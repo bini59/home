@@ -1,0 +1,41 @@
+.App{
+    width: 100%;
+    min-height: 100vh;
+
+    background-image: url("../assets/img/ios17.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .App{
+        min-height: -webkit-fill-available;
+    }
+}
+
+
+/* Default CSS */
+/* Mobile - Portrait */
+
+/* Mobile - Landscape */
+@media (min-width: 576px) {
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .App{
+        background-image: url("../assets/img/ios17.png");
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .App {
+        background-image: url("../assets/img/macos17.jpg");
+    }
+}
+
+/* Desktop (Large) */
+@media (min-width: 1200px) {}

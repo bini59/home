@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { Dock } from './Components/Dock';
+
+import "./styles/app.css"
+
+
+import ios from "./assets/img/ios17.png"
+import ipados from "./assets/img/ipados17.png"
+import macos from "./assets/img/macos17.jpg"
 
 function App() {
+  const [wallpaperUrl, setWallpaperUrl] = useState("../assets/img/")
+  useEffect(() => {
+    const isIphone = /iPhone/.test(navigator.userAgent);
+    const isIpad = /iPad/.test(navigator.userAgent);
+    const isMac = /Mac/.test(navigator.userAgent);
+
+    if (isIphone) setWallpaperUrl(ios);
+    else if (isIpad) setWallpaperUrl(ipados);
+    else if (isMac) setWallpaperUrl(macos);
+    else setWallpaperUrl(null);
+        
+  }, [])
+
+  const appRef = useRef(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    if (appRef !== null) setWidth(appRef.current.offsetWidth);
+    console.log(width)
+  }, [appRef])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={wallpaperUrl ? {backgroundImage : `url(${wallpaperUrl})`} : null} ref={appRef}>
+
+      <Dock width={width} />
     </div>
   );
 }
