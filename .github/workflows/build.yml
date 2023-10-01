@@ -1,0 +1,28 @@
+name : build
+on : 
+  push : 
+    branches: ["master"]
+
+jobs : 
+  build:
+    name: build
+    runs-on: self-hosted
+
+    steps:
+      - name : Checkout code
+        uses : actions/checkout@main
+
+      - name : pull from Github
+        working-directory: /home/bini/projects/home
+        run: git pull origin master
+
+      - name : install packages
+        working-directory: /home/bini/projects/home
+        run : npm install
+
+      - name : build react project
+        working-directory: /home/bini/projects/home
+        run : npm run build
+        
+        
+      
