@@ -1,8 +1,6 @@
 .App{
     width: 100%;
     min-height: 100vh;
-    /*mobile viewport bug fix*/
-    min-height: -webkit-fill-available;
 
     background-image: url("../assets/img/ios17.png");
     background-repeat: no-repeat;
@@ -10,6 +8,13 @@
     background-position: center;
     overflow: hidden;
 }
+
+@supports (-webkit-touch-callout: none) {
+    .App{
+        min-height: -webkit-fill-available;
+    }
+}
+
 
 /* Default CSS */
 /* Mobile - Portrait */
@@ -29,7 +34,6 @@
 @media (min-width: 992px) {
     .App {
         background-image: url("../assets/img/macos17.jpg");
-        min-height: 100vh;
     }
 }
 

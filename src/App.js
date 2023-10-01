@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Dock } from './Components/Dock';
 
@@ -23,10 +23,17 @@ function App() {
         
   }, [])
 
-  return (
-    <div className="App" style={wallpaperUrl ? {backgroundImage : `url(${wallpaperUrl})`} : null}>
+  const appRef = useRef(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    if (appRef !== null) setWidth(appRef.current.offsetWidth);
+    console.log(width)
+  }, [appRef])
 
-      <Dock />
+  return (
+    <div className="App" style={wallpaperUrl ? {backgroundImage : `url(${wallpaperUrl})`} : null} ref={appRef}>
+
+      <Dock width={width} />
     </div>
   );
 }

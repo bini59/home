@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
 import { Icon } from "./Icon";
 
@@ -37,21 +37,81 @@ const StyledDock = styled.div`
     & > div:last-child {
         margin-right: 0;
     }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+        & {
+            padding: 0 26px;
+            width: auto;
+
+            transition: all 0.5s;
+
+            border-radius: 31px;
+        }
+
+        & > div {
+            margin: 0 8.5px;
+        }
+    }
 `;
 
-export const Dock = () => {
+export const Dock = ({width}) => {
 
     const newTab = () => {
         // when click safari icon, open new tab
         window.open("https://www.apple.com", "_blank");
     }
 
+    const [appsInfo, setAppsInfo] = useState([
+        {
+            name: "finder",
+            type: "dock",
+            func: () => { }
+        },
+        {
+            name: "safari",
+            type: "dock",
+            func: newTab
+        },
+        {
+            name: "mail",
+            type: "dock",
+            func: () => { }
+        },
+        {
+            name: "music",
+            type: "dock",
+            func: () => {}
+        },
+    ])
+
+    const constructApps = useCallback(() => {
+        return appsInfo.map((app, index) => {
+            return (
+                <Icon
+                    key={index}
+                    name={app.name}
+                    type={app.type}
+                    func={app.func}
+                />
+            )
+        })
+    }, [appsInfo])
+    const calculateDockWidth = useCallback(() => {
+        return (60 * appsInfo.length + 17 * (appsInfo.length - 1) + 52)
+    }, [appsInfo])
+
+    const calculateCenter = useCallback(() => {
+        const dockWidth = calculateDockWidth();
+        const center = (width-width*0.05-dockWidth) / 2;
+
+        return center;
+    }, [appsInfo, width])
+
+
     return (
-        <StyledDock>
-            <Icon name="finder" type="dock" />
-            <Icon name="safari" type="dock" func={newTab} />
-            <Icon name="mail" type="dock" />
-            <Icon name="music" type="dock" />
+        <StyledDock style={{width : calculateDockWidth(), left: calculateCenter()}}>
+            {constructApps()}
         </StyledDock>
     );
 }
