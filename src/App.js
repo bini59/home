@@ -1,10 +1,14 @@
 import React from 'react';
 
+import { Dock } from './Components/Dock';
+
+import "./styles/app.css"
+
 function App() {
   return (
     <div className="App">
-      <h1>My React App</h1>
-      <p>My first React app</p>
+
+      <Dock />
     </div>
   );
 }
