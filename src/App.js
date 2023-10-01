@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     if (appRef !== null) setWidth(appRef.current.offsetWidth);
     console.log(width)
-  }, [appRef])
+  }, [appRef, width])
 
   return (
     <div className="App" style={wallpaperUrl ? {backgroundImage : `url(${wallpaperUrl})`} : null} ref={appRef}>
