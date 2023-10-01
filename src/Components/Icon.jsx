@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import noapp from "../assets/icons/noApp.png"
 import wallet from "../assets/icons/wallet.svg"

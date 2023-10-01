@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Icon } from "./Icon";
 
 const StyledDock = styled.div`
@@ -62,7 +62,7 @@ export const Dock = ({width}) => {
         window.open("https://www.apple.com", "_blank");
     }
 
-    const [appsInfo, setAppsInfo] = useState([
+    const [appsInfo] = useState([
         {
             name: "finder",
             type: "dock",
@@ -106,7 +106,7 @@ export const Dock = ({width}) => {
         const center = (width-width*0.05-dockWidth) / 2;
 
         return center;
-    }, [appsInfo, width])
+    }, [width, calculateDockWidth])
 
 
     return (
