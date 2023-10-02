@@ -26,6 +26,13 @@ const icons = {
 const StyledIconWrapper = styled.div`
     /* margin: 0 calc(47.5vw - 5.225vw - 120px); */
     position: relative;
+
+    &:hover{
+        & > div {
+            transform: scale(1.1);
+            transition: all 0.2s ease-in-out;
+        }
+    }
 `
 
 const StyledIconText = styled.div`
@@ -35,6 +42,14 @@ const StyledIconText = styled.div`
     margin-top: 5px;
     width: 60px;
     height: 14px;
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        & {
+            width: 40px;
+            height: 10px;
+        }
+    }
 `
 
 const StyledIconAction = styled.div`
@@ -49,6 +64,17 @@ const StyledIconAction = styled.div`
     &:active {
         background-color: #000;
         opacity: 0.4;
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        & {
+            width: 40px;
+            height: 40px;
+            top: 5px;
+            left: 5px;
+            border-radius: 7px;
+        }
     }
 `
 
@@ -68,6 +94,16 @@ export const Icon = ({
         border-radius: 14px;
         background-image: url(${name in icons ? icons[name] : icons["noapp"]});
         z-index: 0;
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            & {
+                width: 40px;
+                height: 40px;
+                margin: 5px;
+                border-radius: 7px;
+            }
+        }
     `
 
     return (
