@@ -8,6 +8,7 @@ import "./styles/app.css"
 import ios from "./assets/img/ios17.png"
 import ipados from "./assets/img/ipados17.png"
 import macos from "./assets/img/macos17.jpg"
+import { Status } from './Components/Status';
 
 function App() {
   const [wallpaperUrl, setWallpaperUrl] = useState("../assets/img/")
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <div className="App" style={wallpaperUrl ? {backgroundImage : `url(${wallpaperUrl})`} : null} ref={appRef}>
-
+      <Status />
       <Dock width={width} />
     </div>
   );
