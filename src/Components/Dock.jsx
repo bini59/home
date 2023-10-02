@@ -53,6 +53,23 @@ const StyledDock = styled.div`
             margin: 0 8.5px;
         }
     }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        & {
+            height: 65px;
+            margin-bottom: 5px;
+            border-radius: 14px;
+
+            padding-left: 5px;
+            padding-right: 5px;
+
+        }
+
+        & > div {
+            margin: 0 1px;
+        }
+    }
 `;
 
 export const Dock = ({width}) => {
@@ -98,8 +115,9 @@ export const Dock = ({width}) => {
         })
     }, [appsInfo])
     const calculateDockWidth = useCallback(() => {
+        if(width > 1024) return (40 * appsInfo.length + 12 * (appsInfo.length) + 8)
         return (60 * appsInfo.length + 17 * (appsInfo.length - 1) + 52)
-    }, [appsInfo])
+    }, [appsInfo, width])
 
     const calculateCenter = useCallback(() => {
         const dockWidth = calculateDockWidth();
