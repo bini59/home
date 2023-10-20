@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Icon } from "./Icon";
 
@@ -114,21 +114,29 @@ export const Dock = ({width}) => {
             )
         })
     }, [appsInfo])
-    const calculateDockWidth = useCallback(() => {
-        if(width > 1024) return (40 * appsInfo.length + 12 * (appsInfo.length) + 8)
-        return (60 * appsInfo.length + 17 * (appsInfo.length - 1) + 52)
-    }, [appsInfo, width])
 
-    const calculateCenter = useCallback(() => {
-        const dockWidth = calculateDockWidth();
-        const center = (width-width*0.05-dockWidth) / 2;
+    const [geometry, setGeometry] = useState({
+        width: 0,
+        left: 0
+    })
 
-        return center;
-    }, [width, calculateDockWidth])
+    useEffect(() => {
+        console.log((40 * appsInfo.length + 12 * (appsInfo.length) + 8));
+        let dockWidth, left;
+        if (width > 1024) dockWidth = (40 * appsInfo.length + 12 * (appsInfo.length) + 8);
+        else dockWidth = (60 * appsInfo.length + 17 * (appsInfo.length - 1) + 52);
+
+        left = (width - width * 0.05 - dockWidth) / 2;
+
+        setGeometry({
+            width: dockWidth,
+            left: left
+        })
+    }, [width])
 
 
     return (
-        <StyledDock style={{width : calculateDockWidth(), left: calculateCenter()}}>
+        <StyledDock style={{width : geometry.width, left: geometry.left}}>
             {constructApps()}
         </StyledDock>
     );
