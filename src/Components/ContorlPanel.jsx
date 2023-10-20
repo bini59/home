@@ -22,7 +22,7 @@ const StyledControlPanel = styled.div`
 export const ControlPanel = () => {
 
     return (
-        <StyledControlPanel>
+        <StyledControlPanel id="controlPanel">
             
         </StyledControlPanel>
     )

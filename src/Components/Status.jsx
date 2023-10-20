@@ -6,7 +6,6 @@ import { useTime } from '../hooks/useTime'
 import control from "../assets/icons/control.svg" 
 import search from "../assets/icons/search.svg"
 import apple from "../assets/icons/apple.svg"
-import { ControlPanel } from './ContorlPanel'
 
 
 const StyledStatus = styled.div`
@@ -54,18 +53,12 @@ const StyledStatusItem = styled.div`
 
 const RightItem = () => {
     const [date, time] = useTime();
-    const [onControl, setOnControl] = React.useState(false);
-
-    const handleControl = () => {
-        setOnControl(!onControl);
-    }
 
     return (
         <>
-            {onControl && <ControlPanel />}
             <StyledStatusItem>
                 <div className='search'><img src={search} alt="search" /></div>
-                <div className='control' onClick={handleControl}><img src={control} alt="control"/></div>
+                <div className='control' id="controlPanelActive"><img src={control} alt="control"/></div>
                 <div className='time'>{date} {time}</div>
             </StyledStatusItem>
         </>
