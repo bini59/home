@@ -38,14 +38,19 @@ const StyledStatusItem = styled.div`
     height: 100%;
     align-items: center;
 
+    
+
     & > div {
         padding: 0 9px;
         height: 100%;
         display: flex;
         align-items: center;
+        border-radius: 4px;
+        user-select: none;
     }
 
     & > div:hover{
+        
         background-color: #ffffff3f;
     }
 
