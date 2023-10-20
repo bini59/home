@@ -55,11 +55,13 @@ const RightItem = () => {
     const [date, time] = useTime();
 
     return (
-        <StyledStatusItem>
-            <div className='search'><img src={search} alt="search" /></div>
-            <div className='control'><img src={control} alt="control"/></div>
-            <div className='time'>{date} {time}</div>
-        </StyledStatusItem>
+        <>
+            <StyledStatusItem>
+                <div className='search'><img src={search} alt="search" /></div>
+                <div className='control' id="controlPanelActive"><img src={control} alt="control"/></div>
+                <div className='time'>{date} {time}</div>
+            </StyledStatusItem>
+        </>
     )
 }
 
