@@ -78,6 +78,28 @@ const StyledIconAction = styled.div`
     }
 `
 
+
+const StyledIcon = styled.div`
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background-image: url(${({ name, icons }) => (name in icons ? icons[name] : icons['noapp'])});
+    z-index: 0;
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        & {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border-radius: 7px;
+        }
+    }
+`
+
 export const Icon = ({
     name,
     type,
@@ -85,30 +107,11 @@ export const Icon = ({
     func
 }) => {
 
-    const StyledIcon = styled.div`
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 60px;
-        height: 60px;
-        border-radius: 14px;
-        background-image: url(${name in icons ? icons[name] : icons["noapp"]});
-        z-index: 0;
 
-        /* Desktop */
-        @media (min-width: 1024px) {
-            & {
-                width: 40px;
-                height: 40px;
-                margin: 5px;
-                border-radius: 7px;
-            }
-        }
-    `
 
     return (
         <StyledIconWrapper>
-            <StyledIcon />
+            <StyledIcon name={name} icons={icons} />
             <StyledIconAction onClick={()=>{if(func)func()}}/>
             {type === "app" && (<StyledIconText>{name}</StyledIconText>)}
         </StyledIconWrapper>

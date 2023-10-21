@@ -38,8 +38,20 @@ const StyledStatusItem = styled.div`
     height: 100%;
     align-items: center;
 
+    
+
     & > div {
         padding: 0 9px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        user-select: none;
+    }
+
+    & > div:hover{
+        
+        background-color: #ffffff3f;
     }
 
 `
@@ -48,11 +60,13 @@ const RightItem = () => {
     const [date, time] = useTime();
 
     return (
-        <StyledStatusItem>
-            <div className='search'><img src={search} alt="search" /></div>
-            <div className='control'><img src={control} alt="control"/></div>
-            <div className='time'>{date} {time}</div>
-        </StyledStatusItem>
+        <>
+            <StyledStatusItem>
+                <div className='search'><img src={search} alt="search" /></div>
+                <div className='control' id="controlPanelActive"><img src={control} alt="control"/></div>
+                <div className='time'>{date} {time}</div>
+            </StyledStatusItem>
+        </>
     )
 }
 
