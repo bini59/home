@@ -78,6 +78,9 @@ export const Dock = ({width}) => {
         // when click safari icon, open new tab
         window.open("https://www.apple.com", "_blank");
     }
+    const moveToLink = (link) => {
+        window.location.href = link;
+    }
 
     const [appsInfo] = useState([
         {
@@ -91,9 +94,9 @@ export const Dock = ({width}) => {
             func: newTab
         },
         {
-            name: "mail",
+            name: "star",
             type: "dock",
-            func: () => { }
+            func: () => {moveToLink("/star")}
         },
         {
             name: "music",

@@ -10,6 +10,7 @@ import mail from "../assets/icons/mail.svg"
 import messages from "../assets/icons/message.svg"
 import weather from "../assets/icons/weather.svg"
 import finder from "../assets/icons/files.svg"
+import star from "../assets/icons/star.svg"
 
 const icons = {
     "noapp": noapp,
@@ -21,6 +22,7 @@ const icons = {
     "messages": messages,
     "weather": weather,
     "finder": finder,
+    "star": star
 }
 
 const StyledIconWrapper = styled.div`
@@ -87,6 +89,7 @@ const StyledIcon = styled.div`
     height: 60px;
     border-radius: 14px;
     background-image: url(${({ name, icons }) => (name in icons ? icons[name] : icons['noapp'])});
+    background-size: cover;
     z-index: 0;
 
     /* Desktop */
