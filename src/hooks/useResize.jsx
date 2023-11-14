@@ -20,5 +20,5 @@ export const useResize = (ref, setWidth) => {
         return () => {
             observer.current.disconnect()
         }
-    }, [ref])
+    }, [ref, setWidth])
 }

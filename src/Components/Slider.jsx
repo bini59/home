@@ -86,7 +86,7 @@ export const Slider = ({type}) => {
             document.removeEventListener('mousedown', mousedown);
             document.removeEventListener('mouseup', mouseup);
         }
-    }, [])
+    }, [type])
 
     // 흰색 동그라미랑 진행도 옮기기 위한 과정
     useEffect(() => {
