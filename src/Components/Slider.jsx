@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import useEnvStore from '../store/envStore';
+
 const StyledSlider = styled.div`
     background-color: #abababaa;
     width: 100%;
@@ -66,16 +68,19 @@ const mouseMove = (e, clicked, setLeft) => {
     }
 }
 
-export const Slider = ({type, setSliderValue}) => {
-    const [value, setValue] = React.useState(0);
+export const Slider = ({name, type}) => {
     const [left, setLeft] = React.useState(-1);
     const [width, setWidth] = React.useState(0);
     const [clicked, setClicked] = React.useState(false);
 
+    // get type value, setValue from store
+    const value = useEnvStore(state => state[type]);
+    const setValue = useEnvStore(state => state[`set${type[0].toUpperCase()}${type.slice(1)}`]);
+
     // 마우스 클릭상태를 확인하기 위한 event handler 등록
     useEffect(() => {
         const mousedown = (e) => {
-            if (e.target.closest(`#${type}`)) setClicked(type);
+            if (e.target.closest(`#${name}`)) setClicked(name);
         }
         const mouseup = () => setClicked(false)
 
@@ -86,18 +91,17 @@ export const Slider = ({type, setSliderValue}) => {
             document.removeEventListener('mousedown', mousedown);
             document.removeEventListener('mouseup', mouseup);
         }
-    }, [type])
+    }, [name])
 
     // 흰색 동그라미랑 진행도 옮기기 위한 과정
     useEffect(() => {
         setLeft(((value / 100) * SLIDER_WIDTH) - 1);
         setWidth(value * ((SLIDER_WIDTH - 24) / SLIDER_WIDTH));
-        setSliderValue(value);
     }, [value]);
 
     return (
         <StyledSlider
-            id={type}
+            id={name}
             className={`sliderContainer`}
             onMouseMove={(e) => mouseMove(e, clicked, setValue)}
             onMouseDown={(e) => mouseMove(e, true, setValue)}

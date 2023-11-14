@@ -21,11 +21,11 @@ const StyledSlideController = styled.div`
     }
 `
 
-const SlideController = ({ type, clicked, setSliderValue }) => {
+const SlideController = ({ name, type, clicked }) => {
     return (
         <StyledSlideController>
-            <div>{type}</div>
-            <Slider type={type} clicked={clicked} setSliderValue={setSliderValue} />
+            <div>{name}</div>
+            <Slider type={type} name={name} clicked={clicked} />
         </StyledSlideController>
     );
 }
