@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 import SlideController from './SlideController'
-import useEnvStore from '../store/envStore'
 
 const StyledControlPanel = styled.div`
 
@@ -32,27 +31,23 @@ const StyledControlPanel = styled.div`
 `
 
 export const ControlPanel = () => {
-    const { setSound, setBrightness } = useEnvStore();
-
     const sliderList = useMemo(() => {
         return [
             {
                 'name': '디스플레이',
                 'type': 'brightness',
-                'setValue': setBrightness
             },
             {
                 'name': '사운드',
                 'type': 'sound',
-                'setValue': setSound
             }
         ]
-    }, [setBrightness, setSound]);
+    }, []);
     
 
     return (
         <StyledControlPanel id="controlPanel">
-            {sliderList.map((slider) => <SlideController key={slider.name} type={slider.name} setSliderValue={slider.setValue} />)}
+            {sliderList.map((slider) => <SlideController key={slider.name} type={slider.type} name={slider.name} />)}
         </StyledControlPanel>
     )
 }
