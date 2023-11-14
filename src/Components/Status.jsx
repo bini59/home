@@ -32,7 +32,7 @@ const StyledStatus = styled.div`
 
 const StyledStatusItem = styled.div`
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
 
     display: flex;
     height: 100%;
