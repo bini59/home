@@ -66,7 +66,7 @@ const mouseMove = (e, clicked, setLeft) => {
     }
 }
 
-export const Slider = ({type}) => {
+export const Slider = ({type, setSliderValue}) => {
     const [value, setValue] = React.useState(0);
     const [left, setLeft] = React.useState(-1);
     const [width, setWidth] = React.useState(0);
@@ -91,7 +91,8 @@ export const Slider = ({type}) => {
     // 흰색 동그라미랑 진행도 옮기기 위한 과정
     useEffect(() => {
         setLeft(((value / 100) * SLIDER_WIDTH) - 1);
-        setWidth(value * ((SLIDER_WIDTH-24)/SLIDER_WIDTH));
+        setWidth(value * ((SLIDER_WIDTH - 24) / SLIDER_WIDTH));
+        setSliderValue(value);
     }, [value]);
 
     return (
