@@ -23,6 +23,8 @@ const StyledControlPanel = styled.div`
 
     padding: 7px;
 
+    backdrop-filter: blur(50px);
+
     & > div {
         margin-bottom: 10px;
         box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.1);
