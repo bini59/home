@@ -21,11 +21,13 @@ const StyledSlideController = styled.div`
     }
 `
 
-export const SlideController = ({ type, clicked }) => {
+const SlideController = ({ type, clicked, setSliderValue }) => {
     return (
         <StyledSlideController>
             <div>{type}</div>
-            <Slider type={type} clicked={clicked} />
+            <Slider type={type} clicked={clicked} setSliderValue={setSliderValue} />
         </StyledSlideController>
     );
 }
+
+export default React.memo(SlideController);
