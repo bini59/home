@@ -135,7 +135,7 @@ export const Dock = ({width}) => {
             width: dockWidth,
             left: left
         })
-    }, [width])
+    }, [width, appsInfo.length]);
 
 
     return (
